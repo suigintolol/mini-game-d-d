@@ -1,0 +1,66 @@
+
+#include "pch.h"
+#include <cstdlib>
+#include <iostream>
+using namespace std;
+
+
+class unit
+{
+public:
+	unit(
+		
+	
+	);
+	int create_skillpoint() {
+		// 4 broska    1-25 = skillpoint
+		int znachenieskillpoint=0;
+		
+		for (size_t i = 0; i < 4; i++)
+		{			
+			znachenieskillpoint += rand() % 25 + 1;
+		}
+		return znachenieskillpoint;
+	}
+
+	void raspredelenie_skillpoint() {
+		string parametry[10] = { "damage", "armor", "heetpoint", "iq", "agility", "strenge", "harizma", "luck", "moral", "speed" };
+		// 1) randomno meshaem massiv skilov
+		int max = rand() % 10 + 1;
+		// 2) randomno ot 1 do 10 vibirayem max 
+		while (znachenieskillpoint=!0)
+		{
+
+		}
+		// 3) po poryadku raspredelyaem ochki. ot 1 do max/ esli ochki ne konchaytsya, to po novomu krugu
+	}
+	~unit();
+
+private:
+	int damage, armor, heetpoint, iq, agility, strenge, harizma, luck, moral, speed;
+	float skillpoint;
+
+	void prisvoenie(int a) {
+		skillpoint = a;
+	}
+
+};
+
+unit::unit()
+{
+	create_skillpoint();
+	raspredelenie_skillpoint();
+}
+
+unit ::~unit()
+{
+}
+
+
+int main()
+{
+	unit you;
+
+
+	return 0;
+}
