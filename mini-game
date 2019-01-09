@@ -1,66 +1,108 @@
-
 #include "pch.h"
 #include <cstdlib>
 #include <iostream>
+#include <ctime>
 using namespace std;
 
 
-class unit
-{
-public:
-	unit(
-		
-	
-	);
-	int create_skillpoint() {
-		// 4 broska    1-25 = skillpoint
-		int znachenieskillpoint=0;
-		
-		for (size_t i = 0; i < 4; i++)
-		{			
-			znachenieskillpoint += rand() % 25 + 1;
+class unit {
+	public:
+		unit();
+
+		void print_skill(){
+			cout << "You'r slill: \ndamage = " << damage << endl;
+			cout << "armor = " << armor << endl;
+			cout << "hitpoint = " << hitpoint << endl;
+			cout << "intellect = " << intellect << endl;
+			cout << "agility = " << agility << endl;
+			cout << "strength = " << strength << endl;
+			cout << "charisma = " << charisma << endl;
+			cout << "luck = " << luck << endl;
+			cout << "moral = " << moral << endl;
+			cout << "speed = " << speed << endl;
 		}
-		return znachenieskillpoint;
-	}
 
-	void raspredelenie_skillpoint() {
-		string parametry[10] = { "damage", "armor", "heetpoint", "iq", "agility", "strenge", "harizma", "luck", "moral", "speed" };
-		// 1) randomno meshaem massiv skilov
-		int max = rand() % 10 + 1;
-		// 2) randomno ot 1 do 10 vibirayem max 
-		while (znachenieskillpoint=!0)
-		{
+		~unit();
 
+	private:
+		int damage = 0,
+			armor = 0,
+			hitpoint = 0,
+			intellect = 0,
+			agility = 0,
+			strength = 0,
+			charisma = 0,
+			luck = 0,
+			moral = 0,
+			speed = 0,
+			znachenie_skillpoint = 0;
+		float skillpoint;
+		string print;
+
+		void create_skillpoint(){
+			for (size_t i = 0; i < 4; i++) {
+				znachenie_skillpoint += rand() % 25 + 1;
+			}
 		}
-		// 3) po poryadku raspredelyaem ochki. ot 1 do max/ esli ochki ne konchaytsya, to po novomu krugu
-	}
-	~unit();
 
-private:
-	int damage, armor, heetpoint, iq, agility, strenge, harizma, luck, moral, speed;
-	float skillpoint;
-
-	void prisvoenie(int a) {
-		skillpoint = a;
-	}
-
+		void raspredelenie_skillpoint(){ 
+			int max = rand() % 10 + 1;
+			int kolvo_ochkov;
+			while (znachenie_skillpoint != 0) {
+				kolvo_ochkov = rand() % max + 1;
+				if (kolvo_ochkov > znachenie_skillpoint) {
+					kolvo_ochkov = znachenie_skillpoint;
+				}
+				switch (rand() % 9) {
+				case 1:
+					damage += kolvo_ochkov;
+					break;
+				case 2:
+					armor += kolvo_ochkov;
+					break;
+				case 3:
+					hitpoint += kolvo_ochkov;
+					break;
+				case 4:
+					intellect += kolvo_ochkov;
+					break;
+				case 5:
+					agility += kolvo_ochkov;
+					break;
+				case 6:
+					strength += kolvo_ochkov;
+					break;
+				case 7:
+					charisma += kolvo_ochkov;
+					break;
+				case 8:
+					luck += kolvo_ochkov;
+					break;
+				case 9:
+					moral += kolvo_ochkov;
+					break;
+				case 10:
+					speed += kolvo_ochkov;
+					break;
+				default:
+					break;
+				}
+				znachenie_skillpoint -= kolvo_ochkov;
+			}
+		}
 };
 
-unit::unit()
-{
+unit::unit() {
 	create_skillpoint();
 	raspredelenie_skillpoint();
 }
 
-unit ::~unit()
-{
+unit ::~unit() {
 }
 
-
-int main()
-{
+int main() {
+	srand(time(NULL));
 	unit you;
-
-
+	you.print_skill();
 	return 0;
 }
