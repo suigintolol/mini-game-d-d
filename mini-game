@@ -2,15 +2,16 @@
 #include <cstdlib>
 #include <iostream>
 #include <ctime>
+#include <string>
 using namespace std;
-
+ 
 
 class unit {
 	public:
-		unit();
+		unit(string name);
 
 		void print_skill(){
-			cout << "You'r slill: \ndamage = " << damage << endl;
+			cout << name_object <<" skill: \ndamage = " << damage << endl;
 			cout << "armor = " << armor << endl;
 			cout << "hitpoint = " << hitpoint << endl;
 			cout << "intellect = " << intellect << endl;
@@ -19,7 +20,7 @@ class unit {
 			cout << "charisma = " << charisma << endl;
 			cout << "luck = " << luck << endl;
 			cout << "moral = " << moral << endl;
-			cout << "speed = " << speed << endl;
+			cout << "speed = " << speed << endl<< endl;
 		}
 
 		~unit();
@@ -37,7 +38,7 @@ class unit {
 			speed = 0,
 			znachenie_skillpoint = 0;
 		float skillpoint;
-		string print;
+		string name_object;
 
 		void create_skillpoint(){
 			for (size_t i = 0; i < 4; i++) {
@@ -92,9 +93,11 @@ class unit {
 		}
 };
 
-unit::unit() {
+unit::unit(string name) {
 	create_skillpoint();
 	raspredelenie_skillpoint();
+	name_object = name;
+	print_skill();
 }
 
 unit ::~unit() {
@@ -102,7 +105,11 @@ unit ::~unit() {
 
 int main() {
 	srand(time(NULL));
-	unit you;
-	you.print_skill();
+	unit you("you");
+	unit enemy0("crook");
+	unit enemy1("goblin");
+	unit enemy2("leha");
+	unit enemy3("vampire");
+	unit enemy4("god");
 	return 0;
 }
