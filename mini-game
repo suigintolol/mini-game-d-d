@@ -54,7 +54,7 @@ class unit {
 				if (kolvo_ochkov > znachenie_skillpoint) {
 					kolvo_ochkov = znachenie_skillpoint;
 				}
-				switch (rand() % 9) {
+				switch (rand() % 10+1) {
 				case 1:
 					damage += kolvo_ochkov;
 					break;
