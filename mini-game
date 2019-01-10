@@ -10,7 +10,51 @@ class unit {
 	public:
 		unit(string name);
 
-		void print_skill(){
+		int get_damage() {
+			return damage;
+		}
+
+		int get_armor() {
+			return armor;
+		}
+
+		int get_hitpoint() {
+			return hitpoint;
+		}
+
+		int get_intellect() {
+			return intellect;
+		}
+
+		int get_agility() {
+			return agility;
+		}
+
+		int get_strength() {
+			return strength;
+		}
+
+		int get_charisma() {
+			return charisma;
+		}
+
+		int get_luck() {
+			return luck;
+		}
+
+		int get_moral() {
+			return moral;
+		}
+
+		int get_speed() {
+			return speed;
+		}
+
+		string get_name() {
+			return name_object;
+		}
+
+		void print_skill() {
 			cout << name_object <<" skill: \ndamage = " << damage << endl;
 			cout << "armor = " << armor << endl;
 			cout << "hitpoint = " << hitpoint << endl;
@@ -26,9 +70,9 @@ class unit {
 		~unit();
 
 	private:
-		int damage = 0,
+		int damage = 1,
 			armor = 0,
-			hitpoint = 0,
+			hitpoint = 10,
 			intellect = 0,
 			agility = 0,
 			strength = 0,
@@ -40,13 +84,13 @@ class unit {
 		float skillpoint;
 		string name_object;
 
-		void create_skillpoint(){
+		void create_skillpoint() {
 			for (size_t i = 0; i < 4; i++) {
 				znachenie_skillpoint += rand() % 25 + 1;
 			}
 		}
 
-		void raspredelenie_skillpoint(){ 
+		void raspredelenie_skillpoint() { 
 			int max = rand() % 10 + 1;
 			int kolvo_ochkov;
 			while (znachenie_skillpoint != 0) {
@@ -86,6 +130,7 @@ class unit {
 					speed += kolvo_ochkov;
 					break;
 				default:
+					cout << "ERROR create unit";
 					break;
 				}
 				znachenie_skillpoint -= kolvo_ochkov;
@@ -103,6 +148,31 @@ unit::unit(string name) {
 unit ::~unit() {
 }
 
+void fite(unit one, unit two) {
+	int write_damage_one = one.get_damage() - two.get_armor();
+	int write_damage_two = two.get_damage() - one.get_armor();
+
+	if (write_damage_one <= 0 && write_damage_two <= 0) {
+		cout << endl << one.get_name() << " & " << two.get_name() << " get tired.\n";
+		return;
+	}
+	else if (write_damage_one <= 0) {
+		cout << endl << two.get_name() << " WIN ! " << one.get_name() << " get tired.\n";
+	} else if (write_damage_two <= 0) {
+		cout << endl << one.get_name() << " WIN ! " << two.get_name() << " get tired.\n";
+	} else {
+		if (trunc(two.get_hitpoint() / write_damage_one) < trunc(one.get_hitpoint() / write_damage_two)) {
+			cout << endl << one.get_name() << " WIN ! " << two.get_name() << " dead :)  )X\n";
+		}
+		else if (trunc(two.get_hitpoint() / write_damage_one) > trunc(one.get_hitpoint() / write_damage_two)) {
+			cout << endl << two.get_name() << " WIN ! " << one.get_name() << " dead X(  (:\n";
+		}
+		else {
+			cout << endl << two.get_name() << " & " << one.get_name() << " dead X(  )X\n";
+		}
+	}
+}
+
 int main() {
 	srand(time(NULL));
 	unit you("you");
@@ -111,5 +181,8 @@ int main() {
 	unit enemy2("leha");
 	unit enemy3("vampire");
 	unit enemy4("god");
+	
+	
+	fite(you, enemy0);
 	return 0;
 }
