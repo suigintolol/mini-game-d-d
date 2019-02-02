@@ -23,7 +23,7 @@ struct gem
 {
 	char color = '*';
 	//char special = NULL;                   //usless
-	bool desrtoy = false;
+	bool destroy = false;
 };
 
 gem **arrgenerations(size_t X, size_t Y)
@@ -47,7 +47,7 @@ gem **arrgenerations(size_t X, size_t Y)
 void create_random_color(gem &element)
 {
 	element.color = (char)(rand() % 6 + 65);
-	element.desrtoy = false;
+	element.destroy = false;
 }
 
 void init(gem **Array, size_t X, size_t Y)
@@ -135,7 +135,7 @@ void offset_crystal_removal(gem **Array, size_t X, size_t Y, unsigned int sum)
 			{
 				for (size_t j = 0; j < Y; j++)
 				{
-					if (Array[i][j].desrtoy)
+					if (Array[i][j].destroy)
 					{
 						if (i==0)
 						{
@@ -170,14 +170,14 @@ bool search_thee(gem **Array, size_t X, size_t Y)
 					if (Array[i][j].color == Array[i][k].color)
 					{
 						std::cout << "\nkristal destroy " << i << " " << j<<std::endl;
-						Array[i][k].desrtoy = true;
+						Array[i][k].destroy = true;
 					}
 					else
 					{
 						break;
 					}
 				}
-				Array[i][j].desrtoy = Array[i][j + 1].desrtoy = Array[i][j + 2].desrtoy = true;
+				Array[i][j].destroy = Array[i][j + 1].destroy = Array[i][j + 2].destroy = true;
 				std::cout << "\nkristal destroy " << i << " " << j <<" : " << i << " " << j+1 << " : " << i << " " << j+2 << std::endl;
 			}
 		}
@@ -193,7 +193,7 @@ bool search_thee(gem **Array, size_t X, size_t Y)
 				{
 					if (Array[i][j].color == Array[k][j].color)
 					{
-						Array[k][j].desrtoy = true;
+						Array[k][j].destroy = true;
 						std::cout << "\nkristal destroy " << i << " " << j << std::endl;
 					}
 					else
@@ -201,7 +201,7 @@ bool search_thee(gem **Array, size_t X, size_t Y)
 						break;
 					}
 				}
-				Array[i][j].desrtoy = Array[i + 1][j].desrtoy = Array[i + 2][j].desrtoy = true;
+				Array[i][j].destroy = Array[i + 1][j].destroy = Array[i + 2][j].destroy = true;
 				std::cout << "\nkristal destroy " << i << " " << j << " : " << i+1 << " " << j  << " : " << i+2 << " " << j << std::endl;
 			}
 		}
@@ -213,7 +213,7 @@ bool search_thee(gem **Array, size_t X, size_t Y)
 		{
 			for (size_t j = 0; j < Y; j++)
 			{
-				if (Array[i][j].desrtoy)
+				if (Array[i][j].destroy)
 				{
 					sum++;
 				}
@@ -274,8 +274,8 @@ void play(gem **Array, size_t X, size_t Y)
 			}
 			else
 			{
-				std::cout << "\nERROR wrong command call, see definition\n" << std::endl;
-				action = NULL;
+				std::cout << "\nERROR wrong command call, see definition 'move'\n" << std::endl;
+				return;
 			}
 		}	
 		else if (action == 'q')
