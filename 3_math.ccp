@@ -2,8 +2,6 @@
 #include <time.h>
 #include <iostream>
 #include <string>
-#include <conio.h>
-#include <algorithm>
 using namespace std;
 
 struct gem;
@@ -303,5 +301,10 @@ int main()
 	std::cout << "\n\n\n\n\n\n\n\n\n\nSTART!\n\n";
 	dump(arr, X, Y);
 	play(arr, X, Y);
+	for (size_t i = 0; i < X; i++)
+	{
+		delete []arr[X];
+	}
+	delete[]arr;
 }
 
