@@ -289,10 +289,10 @@ void play(gem **Array, size_t X, size_t Y)
 	}
 }
 
-//bool mix()
-//{
-//
-//}
+bool mix()
+{
+	return true;
+}
 
 int main()
 {
