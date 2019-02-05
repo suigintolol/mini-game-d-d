@@ -251,8 +251,8 @@ void dump(gem **Array, size_t X, size_t Y)
 
 void play(gem **Array, size_t X, size_t Y)
 {
-	char action = NULL;
-	char m = NULL;
+	char action = '\0';
+	char m = '\0';
 	unsigned int x1 = -1;
 	unsigned int y1 = -1;
 	std::cout << " Have a nice game\n Enter 'q' to exit\nexample input for move - m x y d \n x, у - coordinates(0 - 9)\nd - movement in(lrud - left, right, up, down)\n\n";
@@ -288,6 +288,11 @@ void play(gem **Array, size_t X, size_t Y)
 		}
 	}
 }
+
+//bool mix()
+//{
+//
+//}
 
 int main()
 {
